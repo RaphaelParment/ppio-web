@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './core/services/auth-guard.service';
 
 const routes: Routes = [
-    { path: '', loadChildren: 'app/features/home/home.module#HomeModule'},
-    { path: 'login', loadChildren: 'app/features/login/login.module#LoginModule'},
-    { path: '**', redirectTo: '' }
+    { path: 'ppio', loadChildren: 'app/home/home.module#HomeModule'},
+    { path: 'login', loadChildren: 'app/login/login.module#LoginModule'},
+    { path: '**', redirectTo: 'ppio' }
 
 ];
 @NgModule({
