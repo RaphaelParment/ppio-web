@@ -5,15 +5,38 @@
     <th>Score</th>
     <th>Actions</th>
   </thead>
-  <tbody>
-    <tr *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
-        <td>{{i}}</td>
-        <td>Charlie Q.</td>
-        <td>11 - 2</td>
-        <td>
-          <button (click)="validate()">Validate</button>
-          <button (click)="change()">Change</button>
-        </td>
-    </tr>
-  </tbody>
+  <tbody *ngFor="let m of matches">
+      <tr>
+          <td>{{m.id}}</td>
+          <td>{{m.joueur1.name}}</td>
+          <td (click)="m.showSet = !m.showSet">{{m.score}}</td>
+          <td>{{m.joueur2.name}}</td>
+          <td>
+            <button (click)="validate(m)">Validate</button>
+            <button (click)="change = m">Change</button>
+          </td>
+      </tr>
+      <tr *ngIf="m.showSet">
+          <td colspan="5">
+            <table>
+              <thead><tr><td>Sets</td></tr></thead>
+              <tbody>
+              <tr *ngFor="let s of m.sets">
+                  <td>
+                    {{s.score1}} - {{s.score2}}
+                  </td>
+              </tr>
+            </tbody>
+            </table>
+      </tr>
+    </tbody>
 </table>
+
+<div *ngIf="change">
+  <!-- Should add one more set or remove sets -->
+  <div *ngFor="let s of change.sets">
+    <input type="number" [(ngModel)]=s.score1>
+    <input type="number" [(ngModel)]=s.score2>
+  </div>
+  <button (click)="confirmChange()">Change</button>
+</div>

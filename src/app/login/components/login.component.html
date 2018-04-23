@@ -1,14 +1,14 @@
 <h1>KIM PONG</h1>
 
-<form [formGroup]="formLogin" (ngSubmit)="onFormSubmit()" class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Enter your email" [formControl]="email" required>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-      <input matInput type="password" [formControl]="password" placeholder="Enter your password" required>
-      <mat-error *ngIf="password.invalid">{{getErrorMessagePwd()}}</mat-error>
-    </mat-form-field >
-  <button mat-button mat-raised-button [disabled]="email.invalid || password.invalid" type="submit">Login</button>
+<form [formGroup]="formLogin" (ngSubmit)="onFormSubmit()" >
+  <div>
+    <input placeholder="Enter your email" [formControl]="email" required>
+    <span *ngIf="email.invalid">{{getErrorMessage()}}</span>
+  <div>
+  <div>
+    <input matInput type="password" [formControl]="password" placeholder="Enter your password" required>
+    <span *ngIf="password.invalid">{{getErrorMessagePwd()}}</span>
+  </div>
+  <button [disabled]="email.invalid || password.invalid" type="submit">Login</button>
 </form>
 

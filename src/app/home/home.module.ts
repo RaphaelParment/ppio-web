@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home.component';
 import { HomeRoutingModule } from './home.routing.module';
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule } from '@angular/material';
-import { MediaMatcher } from '@angular/cdk/layout';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -22,15 +20,10 @@ import { AuthGuardService } from '../core/services/auth-guard.service';
     RouterModule,
     FormsModule,
     SharedModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatListModule,
     HomeRoutingModule
   ],
   providers: [
     AuthGuardService,
-    MediaMatcher
   ],
 })
 export class HomeModule { }

@@ -7,7 +7,7 @@ import { MenuItem } from '../models/menu';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnDestroy {
+export class HomeComponent {
 
   mobileQuery: MediaQueryList;
   fillerNav = new Array(
@@ -15,15 +15,6 @@ export class HomeComponent implements OnDestroy {
     new MenuItem('Matches', '/ppio/matches'),
     new MenuItem('Ranking', '/ppio/ranking'));
 
-  private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+  constructor() {
   }
 }

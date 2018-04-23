@@ -1,3 +1,15 @@
-<p>
-  ranking works!
-</p>
+<table>
+    <thead>
+      <th>#</th>
+      <th>Nom</th>
+      <th>Rank</th>
+      <th>Points</th>
+    </thead>
+    <tbody >
+        <tr *ngFor="let u of users">
+            <td>{{u.id}}</td>
+            <td>{{u.name}}</td>
+            <td>{{u.rank}}</td>
+        </tr>
+    </tbody>
+  </table>
