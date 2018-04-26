@@ -1,15 +1,16 @@
 <table>
     <thead>
       <th>#</th>
-      <th>Nom</th>
-      <th>Rank</th>
+      <th>FirstName</th>
+      <th>LastName</th>
       <th>Points</th>
     </thead>
     <tbody >
         <tr *ngFor="let u of users">
             <td>{{u.id}}</td>
-            <td>{{u.name}}</td>
-            <td>{{u.rank}}</td>
+            <td>{{u.firstname}}</td>
+            <td>{{u.lastname}}</td>
+            <td>{{u.points}}</td>
         </tr>
     </tbody>
   </table>

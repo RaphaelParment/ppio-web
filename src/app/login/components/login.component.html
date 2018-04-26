@@ -4,7 +4,7 @@
   <div>
     <input placeholder="Enter your email" [formControl]="email" required>
     <span *ngIf="email.invalid">{{getErrorMessage()}}</span>
-  <div>
+  </div>
   <div>
     <input matInput type="password" [formControl]="password" placeholder="Enter your password" required>
     <span *ngIf="password.invalid">{{getErrorMessagePwd()}}</span>
