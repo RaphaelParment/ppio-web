@@ -9,7 +9,7 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class MatchService {
 
-  baseURL = "http://localhost:4200/ppio/games"
+  baseURL = 'http://localhost:4200/ppio/games';
 
   constructor(
     private http: Http
@@ -24,27 +24,29 @@ export class MatchService {
   post(match: Match): Observable<any> {
     return this.http.post(this.baseURL, JSON.stringify(match)).pipe(
       map(res => res.json())
-    )
-  }
-
-  private mapMatches(res: any[]): Match[] {
-    return res.map(m => this.mapMatch(m))
-  }
-
-  private mapMatch(res: any): Match {
-    return new Match(res.id,
-      this.mapSets(res.sets),
-      res.validated, 
-      res.player1Id, 
-      res.player2Id,
     );
   }
 
-  private mapSets(json : any[]): Set[]{
-    return json.map(s => this.mapSet(s))
+  private mapMatches(res: any[]): Match[] {
+    return res.map(m => this.mapMatch(m));
   }
 
-  private mapSet(json: any) : Set{
+  private mapMatch(res: any): Match {
+    const match = new Match(
+      this.mapSets(res.sets),
+      res.validated,
+      res.player1Id,
+      res.player2Id,
+    );
+    match.id = res.id;
+    return match;
+  }
+
+  private mapSets(json: any[]): Set[] {
+    return json.map(s => this.mapSet(s));
+  }
+
+  private mapSet(json: any): Set {
     return new Set(json.id, json.score1, json.score2);
   }
 }

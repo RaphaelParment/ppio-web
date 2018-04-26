@@ -15,9 +15,10 @@ export class AddMatchComponent implements OnInit {
 
   nbSets = environment.sets;
 
-  users : User[] = []
-  opponent : Player = null;
-  sets : Set[] = []
+  users: User[] = [];
+  me: Player = null;
+  opponent: Player = null;
+  sets: Set[] = [];
 
   constructor(
     private userService: UserService,
@@ -25,23 +26,28 @@ export class AddMatchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.search("blalba").subscribe(users => this.users = users.sort((a, b) => a.lastname.localeCompare(b.lastname)))
+    this.userService.search('blalba').subscribe(users => this.users = users.sort((a, b) => a.lastname.localeCompare(b.lastname)));
 
   }
 
-  addSet(){
-    if(this.sets.length < this.nbSets)
-      this.sets.push(new Set())
+  addSet() {
+    if (this.sets.length < this.nbSets) {
+      this.sets.push(new Set());
+    }
   }
-  
-  removeSet(){
-    if(this.sets.length > 0)
+
+  removeSet() {
+    if (this.sets.length > 0) {
       this.sets.pop();
+    }
   }
 
-  addMatch(){
-    const match = new Match("", this.sets, false, '342514651183579137', this.opponent.id)
+  addMatch() {
+    const match = new Match(this.sets, false, 342514650865631233, this.opponent.id);
+    console.log(match);
     this.matchService.post(match).subscribe();
   }
+
+
 
 }

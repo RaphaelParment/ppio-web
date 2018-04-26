@@ -1,9 +1,14 @@
 <div >
+  <select class="form-control"  id="power"
+    required
+    [(ngModel)]="me" name="me">
+    <option *ngFor="let u of users" [ngValue]="u">{{u.firstname}} {{u.lastname}}</option>
+  </select>
   <label>Select your opponent: </label>
   <select class="form-control"  id="power"
     required
     [(ngModel)]="opponent" name="opponent">
-    <option *ngFor="let u of users" [value]="u.id">{{u.firstname}} {{u.lastname}}</option>
+    <option *ngFor="let u of users" [ngValue]="u">{{u.firstname}} {{u.lastname}}</option>
   </select>
   <!-- SETS -->
   <button (click)="addSet()">Add Set</button>
@@ -15,4 +20,5 @@
     <label>score 2 : </label>
     <input type="number" [(ngModel)]="s.score2">
   </div>
+  <button [disabled]="sets.lenght < 3" (click)="addMatch()">Add Match</button>
 </div>

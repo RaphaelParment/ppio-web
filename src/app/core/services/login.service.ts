@@ -16,4 +16,9 @@ export class LoginService {
     return of(true);
   }
 
+  disconnect(): Observable<Boolean> {
+    localStorage.removeItem('currentUser');
+    return of(true);
+  }
+
 }

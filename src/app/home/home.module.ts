@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuardService } from '../core/services/auth-guard.service';
 import { AddMatchComponent } from './components/add-match/add-match.component';
+import { LoginService } from '../core/services/login.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AddMatchComponent } from './components/add-match/add-match.component';
   ],
   providers: [
     AuthGuardService,
+    LoginService
   ],
 })
 export class HomeModule { }

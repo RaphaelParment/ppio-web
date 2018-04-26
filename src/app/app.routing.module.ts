@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './core/services/auth-guard.service';
 
 const routes: Routes = [
-    { path: 'kp', loadChildren: 'app/home/home.module#HomeModule'},
+    { path: 'kpio', loadChildren: 'app/home/home.module#HomeModule'},
     { path: 'login', loadChildren: 'app/login/login.module#LoginModule'},
-    { path: '**', redirectTo: 'kp' }
+    { path: '**', redirectTo: 'kpio' }
 
 ];
 @NgModule({
