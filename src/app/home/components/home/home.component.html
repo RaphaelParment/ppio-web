@@ -5,7 +5,7 @@
       </nav>
       <button (click)="disconnect()">Quit</button>
       <router-outlet>
-        <h1>Welcome on Kim Pong</h1>
+        <h1>Welcome {{user.firstName}} {{user.lastName}} on Kim Pong</h1>
         <p>Are you ready to be nuked ?</p>
         <button (click)="addNuke = !addNuke">Add a new nuke </button>
         <app-add-match [hidden]="!addNuke"></app-add-match>

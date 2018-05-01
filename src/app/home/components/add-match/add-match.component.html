@@ -20,5 +20,6 @@
     <label>score 2 : </label>
     <input type="number" [(ngModel)]="s.score2">
   </div>
-  <button [hidden]="isNotValid()" (click)="addMatch()">Add Match</button>
+  <button [hidden]="sets.length < 2 || !opponent" (click)="addMatch()">Add Match</button>
+  <span *ngIf="errorMessage">{{errorMessage}}</span>
 </div>

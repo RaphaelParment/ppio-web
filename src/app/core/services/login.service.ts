@@ -21,6 +21,7 @@ export class LoginService {
     return this.http.post(this.baseURL, JSON.stringify(player)).pipe(
       map(x => {
         // player.id = x.json();
+        player.id = '1234';
         if (x) {
           const currentUser = JSON.stringify(player);
           localStorage.setItem('currentUser', crypto.crypt(currentUser));

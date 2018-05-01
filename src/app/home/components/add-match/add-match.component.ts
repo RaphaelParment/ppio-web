@@ -5,6 +5,7 @@ import { Match , Set} from '../../../core/models/match';
 import { environment } from '../../../../environments/environment';
 import { MatchService } from '../../../core/services/match.service';
 import { Router } from '@angular/router';
+import { ValidatorMatch } from '../../../utils/validator-match';
 
 @Component({
   selector: 'app-add-match',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class AddMatchComponent implements OnInit {
 
   nbSets = environment.sets;
-
+  errorMessage = '';
   users: User[] = [];
   me: Player = null;
   opponent: Player = null;
@@ -49,14 +50,15 @@ export class AddMatchComponent implements OnInit {
   }
 
   addMatch() {
+    const validator = new ValidatorMatch();
     const match = new Match(this.sets, false, this.me.id, this.opponent.id);
     console.log(match);
+    if (validator.isValid(match)) {
+      this.errorMessage = '';
     // this.matchService.post(match).subscribe();
+    } else {
+      this.errorMessage = 'The match is not valid !';
+    }
+
   }
-
-  isNotValid() {
-
-  }
-
-
 }
