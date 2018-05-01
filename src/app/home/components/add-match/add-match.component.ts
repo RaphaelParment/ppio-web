@@ -4,7 +4,7 @@ import { UserService } from '../../../core/services/user.service';
 import { Match , Set} from '../../../core/models/match';
 import { environment } from '../../../../environments/environment';
 import { MatchService } from '../../../core/services/match.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-match',
@@ -22,12 +22,18 @@ export class AddMatchComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private matchService: MatchService
+    private matchService: MatchService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.userService.search('blalba').subscribe(users => this.users = users.sort((a, b) => a.lastname.localeCompare(b.lastname)));
-
+    this.me = this.userService.getCurrentUser();
+    if (!this.me) {
+      this.router.navigate(['login']);
+    }
+    this.userService.search().subscribe(users => {
+      this.users = users.items.sort((a, b) => a.lastName.localeCompare(b.lastName)).filter(u => u.id !== this.me.id);
+    });
   }
 
   addSet() {
@@ -43,11 +49,14 @@ export class AddMatchComponent implements OnInit {
   }
 
   addMatch() {
-    const match = new Match(this.sets, false, 342514650865631233, this.opponent.id);
+    const match = new Match(this.sets, false, this.me.id, this.opponent.id);
     console.log(match);
-    this.matchService.post(match).subscribe();
+    // this.matchService.post(match).subscribe();
   }
 
+  isNotValid() {
+
+  }
 
 
 }

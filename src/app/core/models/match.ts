@@ -1,7 +1,7 @@
 import { Player } from './user';
 
 export class Match {
-    public id: number;
+    public id: String;
     public score: String;
     public showSet = false;
     public joueur1Obj: Player;
@@ -10,8 +10,8 @@ export class Match {
     constructor(
         public sets: Set[],
         public isValidated: boolean,
-        public joueur1: number,
-        public joueur2: number,
+        public joueur1: String,
+        public joueur2: String,
     ) {
         this.setScore();
     }

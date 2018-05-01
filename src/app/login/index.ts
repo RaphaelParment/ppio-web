@@ -1,5 +1,5 @@
 // Component
-export * from './components/login.component';
+export * from './components/login/login.component';
 
 // Module
 export * from './login.module';

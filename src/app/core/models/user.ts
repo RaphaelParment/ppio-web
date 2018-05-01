@@ -1,9 +1,11 @@
 export class User {
+
     constructor(
-        public id: number,
-        public firstname: string,
-        public lastname: string,
-        public points: number
+        public id?: String,
+        public firstName?: string,
+        public lastName?: string,
+        public email?: string,
+        public points?: number,
     ) {}
 }
 

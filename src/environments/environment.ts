@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  sets: 3
+  sets: 3,
+  url: 'http://localhost:4200/ppio/'
 };
