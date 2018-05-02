@@ -9,7 +9,7 @@ export class Match {
 
     constructor(
         public sets: Set[],
-        public isValidated: boolean,
+        public validationState: ValidationStateEnum,
         public joueur1: String,
         public joueur2: String,
     ) {
@@ -38,4 +38,10 @@ export class Set {
         public score1 ?: number,
         public score2 ?: number
     ) {}
+}
+
+export enum ValidationStateEnum {
+    NOT_VALIDATED = 0,
+    VALIDATED = 1,
+    UNKNOW = 2
 }

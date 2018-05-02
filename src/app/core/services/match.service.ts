@@ -5,24 +5,36 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Player } from '../models/user';
 import { of } from 'rxjs/observable/of';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class MatchService {
 
-  baseURL = 'http://localhost:4200/ppio/games';
+  baseURL = environment.url + 'games';
 
   constructor(
     private http: Http
   ) { }
 
-  searchMatch(searchParam: any): Observable<Match[]> {
+  searchMatch(searchParam?: any): Observable<any> {
     return this.http.get(this.baseURL).pipe(
-      map(res => this.mapMatches(res.json()))
+      map(res => {
+        return {
+          items : this.mapMatches(res.json().items),
+          count : res.json().count
+        };
+      })
     );
   }
 
-  post(match: Match): Observable<any> {
+  post(match: Match): Observable < any > {
     return this.http.post(this.baseURL, JSON.stringify(match)).pipe(
+      map(res => res.json())
+    );
+  }
+
+  put(match: Match): Observable<any> {
+    return this.http.put(this.baseURL, JSON.stringify(match)).pipe(
       map(res => res.json())
     );
   }
@@ -34,7 +46,7 @@ export class MatchService {
   private mapMatch(res: any): Match {
     const match = new Match(
       this.mapSets(res.sets),
-      res.validated,
+      res.validationState,
       res.player1Id,
       res.player2Id,
     );

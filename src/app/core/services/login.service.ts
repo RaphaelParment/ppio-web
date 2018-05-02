@@ -16,18 +16,16 @@ export class LoginService {
     private http: Http
   ) { }
 
-  login(player: Player): Observable<Boolean> {
+  login(player: Player): Observable<Player> {
     const crypto = new Crypto();
     return this.http.post(this.baseURL, JSON.stringify(player)).pipe(
       map(x => {
-        // player.id = x.json();
-        player.id = '1234';
         if (x) {
-          const currentUser = JSON.stringify(player);
+          const currentUser = JSON.stringify(x.json());
           localStorage.setItem('currentUser', crypto.crypt(currentUser));
-          return true;
+          return x.json();
         }
-        return false;
+        return null;
       })
     );
   }

@@ -26,6 +26,17 @@ export class UserService {
     );
   }
 
+  getUserMatch(id: String): Observable<any> {
+    return this.http.get(this.baseURL + '/' + id  + '/games').pipe(
+      map(x => {
+        return {
+          items : x.json().items,
+          count : x.json().count
+        };
+      })
+    );
+  }
+
   getCurrentUser(): Player {
     const crypto = new Crypto();
     const userCrypter = localStorage.getItem('currentUser');

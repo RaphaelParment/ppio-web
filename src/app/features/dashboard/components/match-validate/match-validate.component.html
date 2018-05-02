@@ -1,18 +1,20 @@
-<table>
+<table *ngIf="matches">
   <thead>
     <th>#</th>
-    <th>Nom</th>
+    <th>Joueur 1</th>
     <th>Score</th>
+    <th>Joueur 2</th>
     <th>Actions</th>
   </thead>
-  <tbody *ngFor="let m of matches">
+  <tbody *ngFor="let m of matches; let i = index">
       <tr>
-          <td>{{m.id}}</td>
-          <td>{{m.joueur1.name}}</td>
+          <td>{{i}}</td>
+          <td>{{m.joueur1}}</td>
           <td (click)="m.showSet = !m.showSet">{{m.score}}</td>
-          <td>{{m.joueur2.name}}</td>
+          <td>{{m.joueur2}}</td>
           <td>
-            <button (click)="validate(m)">Validate</button>
+            __{{m.validationState}}__
+            <button (click)="validate(m)" *ngIf="m.validationState ==! 1" >Validate</button>
             <button (click)="change = m">Change</button>
           </td>
       </tr>

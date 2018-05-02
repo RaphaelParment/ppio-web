@@ -29,9 +29,7 @@ export class AddMatchComponent implements OnInit {
 
   ngOnInit() {
     this.me = this.userService.getCurrentUser();
-    if (!this.me) {
-      this.router.navigate(['login']);
-    }
+    console.log(this.me);
     this.userService.search().subscribe(users => {
       this.users = users.items.sort((a, b) => a.lastName.localeCompare(b.lastName)).filter(u => u.id !== this.me.id);
     });
@@ -51,11 +49,11 @@ export class AddMatchComponent implements OnInit {
 
   addMatch() {
     const validator = new ValidatorMatch();
-    const match = new Match(this.sets, false, this.me.id, this.opponent.id);
+    const match = new Match(this.sets, 0, this.me.id, this.opponent.id);
     console.log(match);
     if (validator.isValid(match)) {
       this.errorMessage = '';
-    // this.matchService.post(match).subscribe();
+      this.matchService.post(match).subscribe();
     } else {
       this.errorMessage = 'The match is not valid !';
     }
