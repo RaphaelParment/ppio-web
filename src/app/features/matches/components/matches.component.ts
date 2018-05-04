@@ -15,7 +15,10 @@ export class MatchesComponent implements OnInit {
   constructor(private matchService : MatchService) { }
 
   ngOnInit() {
-   this.matchService.searchMatch("blabla").subscribe(matches => this.matches = matches)
+   this.matchService.searchMatch("validated=true&limit=20&offset=0").subscribe(matches => this.matches = matches.items)
   }
 
+  changeQuery(page: number) {
+    // this.matchService.searchMatch("validated=true&limit=20&offset="+(page-1)).subscribe(matches => this.matches = matches.items)
+  }
 }

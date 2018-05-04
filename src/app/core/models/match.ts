@@ -6,18 +6,20 @@ export class Match {
     public showSet = false;
     public joueur1Obj: Player;
     public joueur2Obj: Player;
+    public winnerId: String;
 
     constructor(
-        public sets: Set[],
-        public validationState: ValidationStateEnum,
-        public joueur1: String,
-        public joueur2: String,
+        public sets?: Set[],
+        public validationState?: ValidationStateEnum,
+        public player1Id?: String,
+        public player2Id?: String,
+        public editedById?: String,
     ) {
         this.setScore();
     }
 
     setScore() {
-        if (this.sets.length >= 2) {
+        if (this.sets && this.sets.length >= 2) {
             let score1 = 0;
             let score2 = 0;
             for (let i = 0; i < this.sets.length; i++) {
@@ -28,13 +30,15 @@ export class Match {
                 }
             }
             this.score = score1 + ' - ' + score2;
+            this.winnerId = score1 > score2 ? this.player1Id : this.player2Id
          }
     }
 }
 
 export class Set {
     constructor(
-        public id ?: String,
+        public id?: number, 
+        public gameId?: number,
         public score1 ?: number,
         public score2 ?: number
     ) {}

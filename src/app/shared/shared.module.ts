@@ -3,16 +3,24 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { AddMatchComponent } from './add-match/add-match.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 @NgModule({
-    declarations: [],
+    declarations: [
+        AddMatchComponent,
+        PaginationComponent
+    ],
     imports: [
         CommonModule,
         RouterModule,
         FormsModule
     ],
-    exports: [],
+    exports: [
+        AddMatchComponent,
+        PaginationComponent
+    ],
     providers: []
 })
 export class SharedModule { }

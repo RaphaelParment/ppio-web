@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators/map';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { Crypto } from '../../utils/crypto';
+import { mapMatches } from '../../utils/mapper';
+import { mapUsers } from '../../utils/mapper';
 
 @Injectable()
 export class UserService {
@@ -19,7 +21,7 @@ export class UserService {
     return this.http.get(this.baseURL).pipe(
       map(res => {
         return {
-          items : this.mapUsers(res.json().items),
+          items : mapUsers(res.json().items),
           count : res.json().count
         };
       })
@@ -30,7 +32,7 @@ export class UserService {
     return this.http.get(this.baseURL + '/' + id  + '/games').pipe(
       map(x => {
         return {
-          items : x.json().items,
+          items : mapMatches(x.json().items),
           count : x.json().count
         };
       })
@@ -47,9 +49,4 @@ export class UserService {
       return null;
     }
   }
-
-  private mapUsers(json: any): User[] {
-    return json.map(u => new User(u.id, u.firstName, u.lastName, u.email, u.points));
-  }
-
 }

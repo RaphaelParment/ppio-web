@@ -5,11 +5,13 @@ import { DashboardRoutingModule } from './dashboard.routing.module';
 import { MatchValidateComponent } from './components/match-validate/match-validate.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     DashboardRoutingModule,
   ],
   declarations: [

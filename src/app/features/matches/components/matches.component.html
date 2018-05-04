@@ -8,8 +8,8 @@
     <tbody *ngFor="let m of matches">
         <tr>
             <td>{{m.id}}</td>
-            <td>{{m.joueur1.name}}</td>
-            <td>{{m.joueur2.name}}</td>
+            <td>{{m.player1Id}}</td>
+            <td>{{m.player2Id}}</td>
             <td (click)="m.showSet = !m.showSet">{{m.score}}</td>
         </tr>
         <tr>
@@ -28,3 +28,4 @@
         </tr>
       </tbody>
   </table>
+  <app-pagination (pageSelected)="changeQuery($event)"></app-pagination>

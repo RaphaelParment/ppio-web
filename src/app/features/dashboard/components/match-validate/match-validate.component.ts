@@ -17,27 +17,24 @@ export class MatchValidateComponent implements OnInit {
   me: Player;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private matchService: MatchService
   ) {}
 
   ngOnInit(): void {
     this.me = this.userService.getCurrentUser();
-    this.userService.getUserMatch(this.me.id).subscribe(matches => this.matches = matches);
+    this.userService.getUserMatch(this.me.id).subscribe(matches => this.matches = matches.items);
   }
 
 
   validate(m: Match) {
     m.validationState = ValidationStateEnum.VALIDATED;
-    // this.matchService.update(m).subscribe({
-
-    // });
+    m.editedById = this.me.id;
+    console.log(m)
+    this.matchService.put(m).subscribe( x => {
+      console.log(x)
+    });
   }
-
-  confirmChange() {
-    // call the api
-    this.change = null;
-  }
-
 }
 
 

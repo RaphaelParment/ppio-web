@@ -1,22 +1,21 @@
 import { Match, Set } from '../core/models/match';
 import { environment } from '../../environments/environment';
 
-export class ValidatorMatch {
-    constructor() {}
 
-    isValid(match: Match): boolean {
-        if (!match.joueur1 || !match.joueur2) {
+
+export function matchIsValid(match: Match): boolean {
+        if (!match.player1Id || !match.player2Id) {
             console.log('missing player');
             return false;
         }
-        if (match.joueur1 === match.joueur2) {
+        if (match.player1Id === match.player2Id) {
             console.log('same player');
             return false;
         }
         return this.checkSets(match.sets);
     }
 
-    checkSets(sets: Set[]): boolean {
+export function checkSets(sets: Set[]): boolean {
         if (sets.length > environment.sets) {
             console.log('number of set > ' + environment.sets);
             return false;
@@ -38,7 +37,7 @@ export class ValidatorMatch {
         return true;
     }
 
-    checkSet(set: Set): boolean {
+export function checkSet(set: Set): boolean {
         const score1 = set.score1;
         const score2 = set.score2;
         if (score1 === score2) { console.log('score can\'t be the same'); return false; }
@@ -49,7 +48,7 @@ export class ValidatorMatch {
         }
     }
 
-    checkScore(winner: number, loser: number): boolean {
+export function checkScore(winner: number, loser: number): boolean {
         if (winner === 11) {
             if ( loser < 10 ) { return true; } else { return false; }
         } else if (winner > 11) {
@@ -57,4 +56,3 @@ export class ValidatorMatch {
         } else { return false; }
     }
 
-}

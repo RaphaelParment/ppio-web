@@ -6,10 +6,10 @@
       <th>Points</th>
     </thead>
     <tbody >
-        <tr *ngFor="let u of users">
-            <td>{{u.id}}</td>
-            <td>{{u.firstname}}</td>
-            <td>{{u.lastname}}</td>
+        <tr *ngFor="let u of users; let i = index">
+            <td>{{i}}</td>
+            <td>{{u.firstName}}</td>
+            <td>{{u.lastName}}</td>
             <td>{{u.points}}</td>
         </tr>
     </tbody>

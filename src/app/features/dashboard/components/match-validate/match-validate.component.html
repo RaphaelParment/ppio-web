@@ -9,12 +9,11 @@
   <tbody *ngFor="let m of matches; let i = index">
       <tr>
           <td>{{i}}</td>
-          <td>{{m.joueur1}}</td>
+          <td>{{m.player1Id}}</td>
           <td (click)="m.showSet = !m.showSet">{{m.score}}</td>
-          <td>{{m.joueur2}}</td>
+          <td>{{m.player2Id}}</td>
           <td>
-            __{{m.validationState}}__
-            <button (click)="validate(m)" *ngIf="m.validationState ==! 1" >Validate</button>
+            <button (click)="validate(m)" >Validate</button>
             <button (click)="change = m">Change</button>
           </td>
       </tr>
@@ -35,10 +34,5 @@
 </table>
 
 <div *ngIf="change">
-  <!-- Should add one more set or remove sets -->
-  <div *ngFor="let s of change.sets">
-    <input type="number" [(ngModel)]=s.score1>
-    <input type="number" [(ngModel)]=s.score2>
-  </div>
-  <button (click)="confirmChange()">Change</button>
+    <app-add-match [edit]=true [match]=change ></app-add-match>
 </div>
