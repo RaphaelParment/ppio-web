@@ -1,0 +1,31 @@
+<table>
+    <thead>
+      <th>#</th>
+      <th>Joueur1</th>
+      <th>Joueur2</th>
+      <th>Score</th>
+    </thead>
+    <tbody *ngFor="let m of matches">
+        <tr>
+            <td>{{m.id}}</td>
+            <td>{{m.player1Id}}</td>
+            <td>{{m.player2Id}}</td>
+            <td (click)="m.showSet = !m.showSet">{{m.score}}</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+              <table>
+                <thead><tr><td>Sets</td></tr></thead>
+                <tbody>
+                <tr *ngFor="let s of m.sets">
+          
+                    <td>
+                      {{s.score1}} - {{s.score2}}
+                    </td>
+                </tr>
+              </tbody>
+              </table>
+        </tr>
+      </tbody>
+  </table>
+  <app-pagination (pageSelected)="changeQuery($event)"></app-pagination>

@@ -1,0 +1,16 @@
+<table>
+    <thead>
+      <th>#</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Points</th>
+    </thead>
+    <tbody >
+        <tr *ngFor="let u of users; let i = index">
+            <td>{{i}}</td>
+            <td>{{u.firstName}}</td>
+            <td>{{u.lastName}}</td>
+            <td>{{u.points}}</td>
+        </tr>
+    </tbody>
+  </table>

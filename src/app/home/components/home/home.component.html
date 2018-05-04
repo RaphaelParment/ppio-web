@@ -1,0 +1,15 @@
+<div>
+      <h1>Kim Pong</h1>
+      <nav>
+        <a [routerLink]="nav.router" *ngFor="let nav of fillerNav" >{{nav.name}}</a>
+      </nav>
+      <button (click)="disconnect()">Quit</button>
+      <router-outlet>
+        <h1>Welcome {{user.firstName}} {{user.lastName}} on Kim Pong</h1>
+        <button (click)="addNuke = !addNuke">Add match</button>
+        <app-add-match [edit]="false" [hidden]="!addNuke"></app-add-match>
+        <br>
+      </router-outlet>
+      
+
+</div>

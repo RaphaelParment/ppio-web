@@ -1,0 +1,27 @@
+<h1>KIM PONG</h1>
+
+<!-- <form [formGroup]="formLogin" (ngSubmit)="onFormSubmit()" >
+  <div>
+    <input placeholder="Enter your email" [formControl]="email" required>
+    <span *ngIf="email.invalid">{{getErrorMessage()}}</span>
+  </div>
+  <div>
+    <input matInput type="password" [formControl]="password" placeholder="Enter your password" required>
+    <span *ngIf="password.invalid">{{getErrorMessagePwd()}}</span>
+  </div>
+  <button [disabled]="email.invalid || password.invalid" type="submit">Login</button>
+</form> -->
+
+<form [formGroup]="formRegister" (ngSubmit)="onFormSubmit()" >
+  <div>
+    <input [formControl]="firstname" placeholder="Enter your firstname" required>
+  </div>
+  <div>
+    <input [formControl]="lastname" placeholder="Enter your lastname" required>
+  </div>
+  <div>
+    <input [formControl]="email" placeholder="Enter your email"required>
+    <span *ngIf="email.invalid">{{getErrorMessage()}}</span>
+  </div>
+  <button [disabled]="lastname.invalid || firstname.invalid" type="submit">Register</button>
+</form>

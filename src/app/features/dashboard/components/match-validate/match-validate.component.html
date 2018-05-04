@@ -1,0 +1,38 @@
+<table *ngIf="matches">
+  <thead>
+    <th>#</th>
+    <th>Joueur 1</th>
+    <th>Score</th>
+    <th>Joueur 2</th>
+    <th>Actions</th>
+  </thead>
+  <tbody *ngFor="let m of matches; let i = index">
+      <tr>
+          <td>{{i}}</td>
+          <td>{{m.player1Id}}</td>
+          <td (click)="m.showSet = !m.showSet">{{m.score}}</td>
+          <td>{{m.player2Id}}</td>
+          <td>
+            <button (click)="validate(m)" >Validate</button>
+            <button (click)="change = m">Change</button>
+          </td>
+      </tr>
+      <tr *ngIf="m.showSet">
+          <td colspan="5">
+            <table>
+              <thead><tr><td>Sets</td></tr></thead>
+              <tbody>
+              <tr *ngFor="let s of m.sets">
+                  <td>
+                    {{s.score1}} - {{s.score2}}
+                  </td>
+              </tr>
+            </tbody>
+            </table>
+      </tr>
+    </tbody>
+</table>
+
+<div *ngIf="change">
+    <app-add-match [edit]=true [match]=change ></app-add-match>
+</div>

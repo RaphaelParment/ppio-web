@@ -1,0 +1,26 @@
+<div >
+  <!-- <select class="form-control"  id="power"
+    required
+    [(ngModel)]="me" name="me">
+    <option *ngFor="let u of users" [ngValue]="u">{{u.firstName}} {{u.lastName}}</option>
+  </select> -->
+  <label>Select your opponent: </label>
+  <select class="form-control"  id="power"
+    required
+    [(ngModel)]="match.player2Id" name="opponent">
+    <option *ngFor="let u of users" [ngValue]="u.id">{{u.firstName}} {{u.lastName}}</option>
+  </select>
+  <!-- SETS -->
+  <button (click)="addSet()">Add Set</button>
+  <button (click)="removeSet()">Remove Set</button>
+  <div *ngFor="let s of match.sets; let i = index" [attr.data-index]="i">
+    <strong>Set {{i}}</strong>
+    <label>score 1 :</label>
+    <input type="number" [(ngModel)]="s.score1">
+    <label>score 2 : </label>
+    <input type="number" [(ngModel)]="s.score2">
+  </div>
+  <button *ngIf="!edit" (click)="addMatch()">Add Match</button>
+  <button *ngIf="edit" (click)="editMatch()">Edit Match</button>
+  <span *ngIf="errorMessage">{{errorMessage}}</span>
+</div>
