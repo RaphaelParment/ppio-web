@@ -18,7 +18,7 @@ export class MatchService {
   ) { }
 
   searchMatch(queryParams?: String, searchParam?: any): Observable<any> {
-    const url = queryParams ? this.baseURL + '?' + queryParams : this.baseURL
+    const url = queryParams ? this.baseURL + '?' + queryParams : this.baseURL;
     return this.http.get(url).pipe(
       map(res => {
         return {
@@ -36,10 +36,10 @@ export class MatchService {
   }
 
   put(match: Match): Observable<any> {
-    return this.http.put(this.baseURL, JSON.stringify(match)).pipe(
+    return this.http.put(this.baseURL + '/' + match.id, JSON.stringify(match)).pipe(
       map(res => res.json())
     );
   }
-  
+
 }
 

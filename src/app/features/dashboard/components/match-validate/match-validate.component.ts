@@ -30,9 +30,9 @@ export class MatchValidateComponent implements OnInit {
   validate(m: Match) {
     m.validationState = ValidationStateEnum.VALIDATED;
     m.editedById = this.me.id;
-    console.log(m)
+    console.log(m);
     this.matchService.put(m).subscribe( x => {
-      console.log(x)
+      console.log(x);
     });
   }
 }

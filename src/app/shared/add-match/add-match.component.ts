@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import { MatchService } from '../../core/services/match.service';
 import { Router } from '@angular/router';
 import { matchIsValid } from '../../utils/validator';
+import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 
 @Component({
   selector: 'app-add-match',
@@ -15,10 +16,10 @@ import { matchIsValid } from '../../utils/validator';
 export class AddMatchComponent implements OnInit {
 
   @Input()
-  edit: Boolean = false
+  edit: Boolean = false;
 
   @Input()
-  match: Match = new Match()
+  match: Match = new Match();
 
   nbSets = environment.sets;
   errorMessage = '';
@@ -39,12 +40,19 @@ export class AddMatchComponent implements OnInit {
   }
 
   addSet() {
+    if (!this.match.sets) {
+      this.match.sets = [];
+    }
     if (this.match.sets.length < this.nbSets) {
       this.match.sets.push(new Set());
+
     }
   }
 
   removeSet() {
+    if (!this.match.sets) {
+      this.match.sets = [];
+    }
     if (this.match.sets.length > 0) {
       this.match.sets.pop();
     }
@@ -52,8 +60,12 @@ export class AddMatchComponent implements OnInit {
 
   addMatch() {
     console.log(this.match);
+    this.match.player1Id = this.me.id;
     if (matchIsValid(this.match)) {
       this.errorMessage = '';
+      this.match.editedById = this.me.id;
+      this.match.validationState = 0;
+      this.match.setScore();
       this.matchService.post(this.match).subscribe();
     } else {
       this.errorMessage = 'The match is not valid !';
@@ -62,10 +74,10 @@ export class AddMatchComponent implements OnInit {
   }
 
   editMatch() {
-    this.match.editedById = this.me.id
+    this.match.editedById = this.me.id;
     this.matchService.put(this.match).subscribe(x => {
-      console.log(x)
-      this.match = null
-    })
+      console.log(x);
+      this.match = null;
+    });
   }
 }
